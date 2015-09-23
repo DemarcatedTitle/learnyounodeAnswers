@@ -19,9 +19,13 @@ var callback = function (response) {
         var answer = received.join(''); 
         logLen(answer);
         console.log(answer);
+        var test = response.url; 
+        console.log(Object.keys(response));
+        console.log(test);
+
     });
 };
-
+//console.log(process.argv);
 
 
 http.get(url, callback);

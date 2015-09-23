@@ -1,5 +1,5 @@
 var http = require('http');
-
+var completedRequests = 0;
 
 var loganswer = function (string) {
     console.log(string);
@@ -10,7 +10,7 @@ var answerarr = [];
 var acquire = function(url){http.get(url, callback);
 };
 
-var callback = function (response) {
+var callback = function (response, i) {
     
     var received = [];
     response.setEncoding('utf8');
@@ -22,26 +22,29 @@ var callback = function (response) {
     });
     response.on('end',function (end) {
         var answer = received.join('');
-        // answerarr.push({url : answer}); 
-        console.log(answer);
+        var url = response;
+        completedRequests += 1;
+        urlarr[i] = answer;
+        if (completedRequests === inputlen - 2) {
+            
+            
+        }
     });
 
-    response.on('finished', function (finished) {
-        console.log('finished');
-    });
     
         
 };
 
-
-
-
-var inputlen = process.argv.length;
-
-    for (i = 2; i < inputlen; i += 1) {
-        acquire(process.argv[i]);
-   
+var orderIt = function () {}; 
+var urlarr = process.argv.slice(2);
+var i = 0;
+var inputlen = urlarr.length;
+    for (i;i < inputlen; i += 1) {
+        acquire(urlarr[i]);
+        
     } 
+console.log(urlarr);
+
 
    // GET.on('finished', function (finished) {
      //   console.log('finished');
